@@ -40,7 +40,7 @@ public class RankingsResources
     @Path("/SetPlayerStats")
     @GET
     @Timed
-    public Spaceshooter_DAO sayHello(@QueryParam("name") Optional<String> name) 
+    public Spaceshooter_DAO sayHello(@QueryParam("name") Optional<String> name, @QueryParam("score") String score) 
     {
         final String value = String.format(template, name.or(defaultName));
         return new Spaceshooter_DAO(counter.incrementAndGet(), value);
