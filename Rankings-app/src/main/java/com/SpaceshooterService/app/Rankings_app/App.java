@@ -1,5 +1,6 @@
 package com.SpaceshooterService.app.Rankings_app;
 
+import Resources.RankingsResources;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -30,6 +31,10 @@ public class App extends Application<SpaceshooterConfig>
     @Override
     public void run(SpaceshooterConfig configuration, Environment environment) 
     {
-        // nothing to do yet
+    	final RankingsResources resource = new RankingsResources(
+    	        configuration.getTemplate(),
+    	        configuration.getDefaultName()
+    	    );
+    	    environment.jersey().register(resource);
     }
 }
