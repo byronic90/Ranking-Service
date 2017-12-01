@@ -1,6 +1,6 @@
 package Resources;
 
-import RepClass.Saying;
+import RepClass.Spaceshooter_DAO;
 
 import com.google.common.base.Optional;
 import com.codahale.metrics.annotation.Timed;
@@ -11,9 +11,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Path("/hello-world")
+@Path("/Spaceshooter")
 @Produces(MediaType.APPLICATION_JSON)
 public class RankingsResources 
 {
@@ -27,12 +28,21 @@ public class RankingsResources
         this.defaultName = defaultName;
         this.counter = new AtomicLong();
     }
-
+    
+    @Path("/GetTopTen")
     @GET
     @Timed
-    public Saying sayHello(@QueryParam("name") Optional<String> name) 
+    public ArrayList<String> GetTopTen() 
+    {
+        return new Spaceshooter_DAO().GetTopTen();
+    }
+    
+    @Path("/SetPlayerStats")
+    @GET
+    @Timed
+    public Spaceshooter_DAO sayHello(@QueryParam("name") Optional<String> name) 
     {
         final String value = String.format(template, name.or(defaultName));
-        return new Saying(counter.incrementAndGet(), value);
+        return new Spaceshooter_DAO(counter.incrementAndGet(), value);
     }
 }
