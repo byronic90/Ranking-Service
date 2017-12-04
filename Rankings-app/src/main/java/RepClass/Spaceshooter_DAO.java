@@ -42,17 +42,33 @@ public class Spaceshooter_DAO
     	try
     	{
     		// Get top ten players from database 
-    		String obj1 = "name:turag,score:5000";
-    		retList.add(obj1);
-    		String obj2 = "name:malte,score:15000";
-    		retList.add(obj2);
-    		String obj3 = "name:yannik,score:500";
-    		retList.add(obj3);
+    		Database_DAO db_DAO = new Database_DAO();
+    		retList = db_DAO.GetTopTenFromDB();
+    		
+    		db_DAO.CloseConnection();
     		return retList;
     	}
     	catch (Exception ex)
     	{
     		return retList;
+    	}
+    }
+    
+    public boolean SetNewPlayer(String Name, int Punktzahl)
+    {
+    	boolean retBool = false;
+    	try
+    	{
+    		// Save new player to database
+    		Database_DAO db_DAO = new Database_DAO();
+    		retBool = db_DAO.SetNewPlayerToDB(Name, Punktzahl);
+    		
+    		db_DAO.CloseConnection();
+    		return retBool;
+    	}
+    	catch (Exception ex)
+    	{
+    		return retBool;
     	}
     }
 }
