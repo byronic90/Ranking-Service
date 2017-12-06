@@ -57,7 +57,7 @@ public class Database_DAO
 	           String Name = rset.getString("Name");
 	           int Punktzahl = rset.getInt("Punktzahl");
 	            
-	           retList.add("Name:"+Name+", Punktzahl:"+ Punktzahl);
+	           retList.add("name:"+Name+",score:"+Punktzahl);
 	            
 	           ++rowCount;
 	        }

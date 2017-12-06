@@ -7,6 +7,7 @@ import com.codahale.metrics.annotation.Timed;
 
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -42,9 +43,9 @@ public class RankingsResources
     }
     
     @Path("/SetNewPlayer")
-    @GET
+    @POST
     @Timed
-    public boolean SetNewPlayer(@NotNull@QueryParam("name") String name, @NotEmpty@QueryParam("score") int score) 
+    public boolean SetNewPlayer(@QueryParam("name") String name, @QueryParam("score") int score) 
     {
     	try
     	{
