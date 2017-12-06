@@ -47,7 +47,7 @@ public class Database_DAO
 		try 
 	    {
 		    Statement stmt = conn.createStatement();
-	        String strSelect = "SELECT Name, Punktzahl FROM rankings GROUP BY Punktzahl DESC LIMIT 10 ";
+	        String strSelect = "SELECT Name, Punktzahl FROM rankings ORDER BY Punktzahl DESC LIMIT 10 ";
 	 
 	        ResultSet rset = stmt.executeQuery(strSelect);
 	 
