@@ -11,7 +11,7 @@ public class Database_DAO
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/spaceshooter?user=root");
+			conn = DriverManager.getConnection("jdbc:mysql://w014f3de.kasserver.com:3306/d028ab6a?user=d028ab6a&password=7Am379i474J9f7Vy8");
 		}
 		catch(Exception ex)
 		{
