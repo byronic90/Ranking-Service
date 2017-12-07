@@ -1,24 +1,18 @@
 package Resources;
 
-import Deserialization.JSON_PutClass;
 import RepClass.Spaceshooter_DAO;
 
-import com.google.common.base.Optional;
+import com.SpaceshooterService.app.Rankings_app.AppMonitor;
 import com.codahale.metrics.annotation.Timed;
 
-import javax.validation.constraints.NotNull;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -29,12 +23,14 @@ public class RankingsResources
 	private final String template;
     private final String defaultName;
     private final AtomicLong counter;
+    private AppMonitor testMonitor;
 
-    public RankingsResources(String template, String defaultName) 
+    public RankingsResources(String template, String defaultName, AppMonitor testMonitor) 
     {
         this.template = template;
         this.defaultName = defaultName;
         this.counter = new AtomicLong();
+        this.testMonitor = testMonitor;
     }
     
     @Path("/GetTopTen")
@@ -43,6 +39,7 @@ public class RankingsResources
     public ArrayList<String> GetTopTen() 
     {
     	//TODO: trycatch first
+    	this.testMonitor.writeText("[" + new Timestamp(System.currentTimeMillis()) + "] - " + "GetTopTen");
         return new Spaceshooter_DAO().GetTopTen();
     }
     
@@ -53,6 +50,7 @@ public class RankingsResources
     {
     	try
     	{
+    		this.testMonitor.writeText("[" + new Timestamp(System.currentTimeMillis()) + "] - " + "SetNewPlayer: {name:" + name + ",score:"+score);
     		return new Spaceshooter_DAO().SetNewPlayer(name, score);
     	}
     	catch (Exception ex)

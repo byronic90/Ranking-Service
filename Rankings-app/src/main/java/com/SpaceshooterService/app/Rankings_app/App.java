@@ -11,9 +11,12 @@ import io.dropwizard.setup.Environment;
  */
 public class App extends Application<SpaceshooterConfig>
 {
+	public AppMonitor testMonitor;
+	
     public static void main(String[] args) throws Exception 
     {
-        new App().run(args);
+    	String[] args2 = { "server", "conf/RankingsConf.yml" };
+        new App().run(args2);
     }
 
     @Override
@@ -31,10 +34,16 @@ public class App extends Application<SpaceshooterConfig>
     @Override
     public void run(SpaceshooterConfig configuration, Environment environment) 
     {
+    	createMonitor();
     	final RankingsResources resource = new RankingsResources(
     	        configuration.getTemplate(),
-    	        configuration.getDefaultName()
+    	        configuration.getDefaultName(),
+    	        this.testMonitor
     	    );
     	    environment.jersey().register(resource);
+    }
+    
+    private void createMonitor() {
+    	this.testMonitor = new AppMonitor();    	
     }
 }
