@@ -16,8 +16,9 @@ public class AppMonitor extends JFrame {
 	JTextArea mainText;
 	
 	public AppMonitor() {
-		this.setBounds(300, 300, 600, 600);
+		this.setBounds(300, 300, 600, 500);
 		this.setVisible(true);
+		this.setTitle("REST-Monitor");
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) { System.exit(0); }
 		});
