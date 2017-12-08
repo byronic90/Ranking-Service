@@ -5,10 +5,7 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
-/**
- * Hello world!
- *
- */
+
 public class App extends Application<SpaceshooterConfig>
 {
 	public AppMonitor testMonitor;
@@ -17,12 +14,6 @@ public class App extends Application<SpaceshooterConfig>
     {
     	String[] args2 = { "server", "conf/RankingsConf.yml" };
         new App().run(args2);
-    }
-
-    @Override
-    public String getName() 
-    {
-        return "hello-world";
     }
 
     @Override
@@ -35,11 +26,7 @@ public class App extends Application<SpaceshooterConfig>
     public void run(SpaceshooterConfig configuration, Environment environment) 
     {
     	createMonitor();
-    	final RankingsResources resource = new RankingsResources(
-    	        configuration.getTemplate(),
-    	        configuration.getDefaultName(),
-    	        this.testMonitor
-    	    );
+    	final RankingsResources resource = new RankingsResources(this.testMonitor);
     	    environment.jersey().register(resource);
     }
     

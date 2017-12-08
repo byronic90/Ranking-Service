@@ -15,7 +15,7 @@ public class Spaceshooter_DAO
 
     public Spaceshooter_DAO() 
     {
-        // Jackson deserialization
+        // Parameterless Constructor
     }
 
     public Spaceshooter_DAO(long id, String content) 

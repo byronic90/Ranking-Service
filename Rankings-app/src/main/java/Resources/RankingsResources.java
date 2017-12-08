@@ -20,16 +20,12 @@ import java.util.concurrent.atomic.AtomicLong;
 @Produces(MediaType.APPLICATION_JSON)
 public class RankingsResources 
 {
-	private final String template;
-    private final String defaultName;
-    private final AtomicLong counter;
+
     private AppMonitor testMonitor;
 
-    public RankingsResources(String template, String defaultName, AppMonitor testMonitor) 
+    public RankingsResources(AppMonitor testMonitor) 
     {
-        this.template = template;
-        this.defaultName = defaultName;
-        this.counter = new AtomicLong();
+
         this.testMonitor = testMonitor;
     }
     
@@ -38,7 +34,7 @@ public class RankingsResources
     @Timed
     public ArrayList<String> GetTopTen() 
     {
-    	//TODO: trycatch first
+    	
     	this.testMonitor.writeText("[" + new Timestamp(System.currentTimeMillis()) + "] - " + "GetTopTen");
         return new Spaceshooter_DAO().GetTopTen();
     }
